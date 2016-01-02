@@ -7,6 +7,8 @@
 
         var newId = 1;
         vm.ignoreChanges = false;
+        vm.selectedDisplayText = "None";
+        vm.selectedNode = [];
         vm.newNode = {};
         vm.originalData = [
             { id : 'ajson1', parent : '#', text : 'Simple root node', state: { opened: true} },

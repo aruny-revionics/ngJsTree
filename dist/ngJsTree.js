@@ -95,7 +95,9 @@
             restrict: 'A',
             scope: {
                 treeData: '=ngModel',
-                shouldApply : '&'
+                selectedDisplayText: '=',
+                selectedNode: '=',
+                shouldApply: '&'
             },
             controller: 'jsTreeCtrl',
             link: function link(scope, elm, attrs, controller) {
@@ -117,7 +119,35 @@
                             }
                         }
                     }
+                    s.tree.on('select_node.jstree', function (e, data) {
+                        setNodeOnSelect(data, s);
+                    }).on('deselect_node.jstree', function (e, data) {
+                        setNodeOnDeselect(data, s);
+                    });
                 }
+
+                /*triggered when an node is selected(select_node)*/
+                var setNodeOnSelect = function (data, s) {
+                    var currentTreeInstance = s.tree.jstree(true);
+                    showSelectedNodes(data, currentTreeInstance, s);
+                }
+
+                /*triggered when an node is selected(deselect_node)*/
+                var setNodeOnDeselect = function (data, s) {
+                    var currentTreeInstance = s.tree.jstree(true);
+                    showSelectedNodes(data, currentTreeInstance, s);
+                }
+
+               var showSelectedNodes = function (data, currentTreeInstance, s) {
+                    if (data.selected.length == 0) {
+                        s.selectedDisplayText = 'None';
+                    }
+                    else {
+                        s.selectedDisplayText = data.node.text;
+                    }
+                    //reasgin the selected node
+                    s.selectedNode = data.selected;
+                };
 
                 function getOptions() {
                     var jsTreeSettings = attrs.jsTree ? scope.$parent.$eval(attrs.jsTree) : {};
@@ -137,7 +167,12 @@
                     if (attrs.tree) {
                         if (attrs.tree.indexOf('.') !== -1) {
                             var split = attrs.tree.split('.');
-                            scope.tree = scope.$parent[split[0]][split[1]] = elm;
+                            var tree = split.pop();
+                            var context = scope.$parent;
+                            for (var i = 0; i < split.length; i++) {
+                                context = context[split[i]];
+                            }
+                            scope.tree = context[tree] = elm;
                         }
                         else {
                             scope.tree = scope.$parent[attrs.tree] = elm;
@@ -162,10 +197,10 @@
                 };
 
                 nodesWatcher.onAdded = function (node) {
-                    while(blocked) {}
+                    while (blocked) { }
                     blocked = true;
                     var parent = scope.tree.jstree(true).get_node(node.parent);
-                    var res = scope.tree.jstree(true).create_node(parent, node, 'inside',function() {
+                    var res = scope.tree.jstree(true).create_node(parent, node, 'inside', function () {
                         blocked = false;
                     });
                     if (!res) {
@@ -193,8 +228,8 @@
     }
 
     //// Angular Code ////
-    var mi = angular.module('ngJsTree',[]);
-    mi.controller('jsTreeCtrl',jsTreeCtrl);
-    mi.directive('jsTree',jsTreeDirective);
+    var mi = angular.module('ngJsTree', []);
+    mi.controller('jsTreeCtrl', jsTreeCtrl);
+    mi.directive('jsTree', jsTreeDirective);
 
 })(angular);
