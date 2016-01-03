@@ -1,157 +1,254 @@
 <!DOCTYPE html>
 <html>
-<head lang="en">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>NgJsTree Demo Page</title>
 
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="bower_components/jstree/dist/themes/default/style.min.css">
-    <link rel="stylesheet" href="bower_components/AngularJS-Toaster/toaster.css">
-    <link rel="stylesheet" href="bower_components/angular-busy/dist/angular-busy.css">
-    <style>
-        body {
-            padding-top: 50px;
-        }
-    </style>
-</head>
-<body ng-app="ngJsTreeDemo">
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#"><i class="glyphicon glyphicon-tree-conifer"></i> ng-JsTree</a>
-        </div>
-        <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Demo</a></li>
-                <li><a href="https://github.com/ezraroi/ngJsTree" target="_blank">GitHub Page</a></li>
-            </ul>
-        </div><!--/.nav-collapse -->
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Ngjstree : Angular Directive for the famous JS Tree ">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Ngjstree</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/engg-aruny/ngJsTree">View on GitHub</a>
+
+          <h1 id="project_title">Ngjstree</h1>
+          <h2 id="project_tagline">Angular Directive for the famous JS Tree </h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/engg-aruny/ngJsTree/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/engg-aruny/ngJsTree/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
     </div>
-</div>
-<div class="container" ng-controller="treeCtrl as vm">
-    <div class="row">
-        <div class="col-xs-12 text-center">
-            <h2>Welcome to the ng-JsTree Demo Page</h2>
-        </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <p><a href="http://badge.fury.io/bo/ng-js-tree"><img src="https://badge.fury.io/bo/ng-js-tree.svg" alt="Bower version"></a>
+<a href="https://travis-ci.org/ezraroi/ngJsTree"><img src="https://travis-ci.org/ezraroi/ngJsTree.svg?branch=master" alt="Build Status"></a>
+<a href="https://gemnasium.com/ezraroi/ngJsTree"><img src="https://gemnasium.com/ezraroi/ngJsTree.svg" alt="Dependency Status"></a>
+<a href="https://coveralls.io/r/ezraroi/ngJsTree?branch=master"><img src="https://img.shields.io/coveralls/ezraroi/ngJsTree.svg" alt="Coverage Status"></a>
+<a href="https://codeclimate.com/github/ezraroi/ngJsTree"><img src="https://codeclimate.com/github/ezraroi/ngJsTree/badges/gpa.svg" alt="Code Climate"></a>
+<a href="http://gruntjs.com/"><img src="https://cdn.gruntjs.com/builtwith.png" alt="Built with Grunt"></a>
+<a href="https://npmjs.org/package/ng-js-tree"><img src="https://nodei.co/npm/ng-js-tree.png?mini=true" alt="NPM"></a></p>
+
+<h1>
+<a id="enhancement-into-ngjstree" class="anchor" href="#enhancement-into-ngjstree" aria-hidden="true"><span class="octicon octicon-link"></span></a>Enhancement into ngJsTree</h1>
+
+<p>Angular Directive for the famous <a href="http://www.jstree.com/">JS Tree</a> library.</p>
+
+<h2>
+<a id="dependencies" class="anchor" href="#dependencies" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dependencies</h2>
+
+<p>The ngJsTree depends on the following libraries:</p>
+
+<ul>
+<li>Angular</li>
+<li>JsTree</li>
+</ul>
+
+<h2>
+<a id="install" class="anchor" href="#install" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install</h2>
+
+<p>You can install the ngJsTree with bower:</p>
+
+<div class="highlight highlight-source-dosbatch"><pre>bower install ng-js-<span class="pl-k">tree</span> --save</pre></div>
+
+<p>or with npm:</p>
+
+<div class="highlight highlight-source-dosbatch"><pre>npm install ng-js-<span class="pl-k">tree</span> --save</pre></div>
+
+<p>or you can add the ngJsTree.min.js file to your HTML page:</p>
+
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>jquery.js<span class="pl-pds">"</span></span>/&gt;
+&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>angular.js<span class="pl-pds">"</span></span>/&gt;
+&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>jstree.min.js<span class="pl-pds">"</span></span>/&gt;
+&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>ngJsTree.min.js<span class="pl-pds">"</span></span>/&gt;</pre></div>
+
+<p>Add the <code>ngJsTree</code> to your module dependencies</p>
+
+<h1>
+<a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Documentation</h1>
+
+<p>You can find the JSTree documentation at <a href="http://www.jstree.com/api/">this link</a></p>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">div</span> <span class="pl-e">js-tree</span>=<span class="pl-s"><span class="pl-pds">"</span>treeConfig<span class="pl-pds">"</span></span> <span class="pl-e">ng-model</span>=<span class="pl-s"><span class="pl-pds">"</span>treeData<span class="pl-pds">"</span></span> <span class="pl-e">should-apply</span>=<span class="pl-s"><span class="pl-pds">"</span>ignoreModelChanges()<span class="pl-pds">"</span></span> <span class="pl-e">tree</span>=<span class="pl-s"><span class="pl-pds">"</span>treeInstance<span class="pl-pds">"</span></span> <span class="pl-e">tree-events</span>=<span class="pl-s"><span class="pl-pds">"</span>ready:readyCB;create_node:createNodeCB<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">div</span>&gt;</pre></div>
+
+<ul>
+<li>
+<code>treeConfig</code> - This is the configuration object of the JsTree, if you will not supply one, an empty one will be created (not mandatory).</li>
+<li>
+<code>treeData</code> - The array with the elements of the tree, will be used for data binding (adding / removing / updating this data will be reflected in the tree).</li>
+<li>
+<code>ignoreModelChanges()</code> - A method that returns true or false. when returning false, model changes will not be reflected in the tree (not mandatory).</li>
+<li>
+<code>treeInstance</code> - The Js Tree instance will be assigned to this variable in your controller scope (not mandatory).</li>
+<li>
+<code>ready:readyCB;create_node:createNodeCB</code> - List of Js Tree events and callbacks in your controller scope that will be called for each event (not mandatory.</li>
+</ul>
+
+<h2>
+<a id="ngjstree-as-dropdown" class="anchor" href="#ngjstree-as-dropdown" aria-hidden="true"><span class="octicon octicon-link"></span></a>ngJSTree as DropDown</h2>
+
+<div class="highlight highlight-text-html-basic"><pre> &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>input-group<span class="pl-pds">"</span></span> <span class="pl-e">data-toggle</span>=<span class="pl-s"><span class="pl-pds">"</span>dropdown<span class="pl-pds">"</span></span>&gt;
+                            &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text<span class="pl-pds">"</span></span>
+                                   <span class="pl-e">ng-readonly</span>=<span class="pl-s"><span class="pl-pds">"</span>true<span class="pl-pds">"</span></span>
+                                   <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>form-control<span class="pl-pds">"</span></span>
+                                   <span class="pl-e">ng-model</span>=<span class="pl-s"><span class="pl-pds">"</span>vm.selectedDisplayText<span class="pl-pds">"</span></span>&gt;
+
+                            &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>input-group-btn hierarchydropdown-select<span class="pl-pds">"</span></span>&gt;
+                                &lt;<span class="pl-ent">button</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>button<span class="pl-pds">"</span></span>
+                                        <span class="pl-e">style</span>=<span class="pl-s"><span class="pl-pds">"</span>height:33px;<span class="pl-pds">"</span></span>
+                                        <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>btn btn-default dropdown-toggle<span class="pl-pds">"</span></span>
+                                        <span class="pl-e">data-toggle</span>=<span class="pl-s"><span class="pl-pds">"</span>dropdown<span class="pl-pds">"</span></span>
+                                        <span class="pl-e">aria-haspopup</span>=<span class="pl-s"><span class="pl-pds">"</span>true<span class="pl-pds">"</span></span>
+                                        <span class="pl-e">aria-expanded</span>=<span class="pl-s"><span class="pl-pds">"</span>false<span class="pl-pds">"</span></span>&gt;
+
+                                    &lt;<span class="pl-ent">span</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>caret<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">span</span>&gt;
+
+                                &lt;/<span class="pl-ent">button</span>&gt;
+
+                                &lt;<span class="pl-ent">ul</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>dropdown-menu scrollable-dropdown-menu<span class="pl-pds">"</span></span> <span class="pl-e">cg-busy</span>=<span class="pl-s"><span class="pl-pds">"</span>promise<span class="pl-pds">"</span></span>&gt;
+                                    <span class="pl-c">&lt;!--stopPropagation to stop toggle event of dropdown option--&gt;</span>
+                                    &lt;<span class="pl-ent">li</span> <span class="pl-e">ng-click</span>=<span class="pl-s"><span class="pl-pds">"</span>$event.stopPropagation()<span class="pl-pds">"</span></span>&gt;
+                                        &lt;<span class="pl-ent">div</span> <span class="pl-e">js-tree</span>=<span class="pl-s"><span class="pl-pds">"</span>vm.treeConfig<span class="pl-pds">"</span></span>
+                                             <span class="pl-e">should-apply</span>=<span class="pl-s"><span class="pl-pds">"</span>vm.applyModelChanges()<span class="pl-pds">"</span></span>
+                                             <span class="pl-e">ng-model</span>=<span class="pl-s"><span class="pl-pds">"</span>vm.treeData<span class="pl-pds">"</span></span>
+                                             <span class="pl-e">selected-node</span>=<span class="pl-s"><span class="pl-pds">"</span>vm.selectedNode<span class="pl-pds">"</span></span>
+                                             <span class="pl-e">selected-display-text</span>=<span class="pl-s"><span class="pl-pds">"</span>vm.selectedDisplayText<span class="pl-pds">"</span></span>
+                                             <span class="pl-e">tree</span>=<span class="pl-s"><span class="pl-pds">"</span>vm.treeInstance<span class="pl-pds">"</span></span>
+                                             <span class="pl-e">tree-events</span>=<span class="pl-s"><span class="pl-pds">"</span>ready:vm.readyCB;create_node:vm.createCB<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">div</span>&gt;
+                                    &lt;/<span class="pl-ent">li</span>&gt;
+                                &lt;/<span class="pl-ent">ul</span>&gt;
+                            &lt;/<span class="pl-ent">div</span>&gt;<span class="pl-c">&lt;!-- /btn-group --&gt;</span>
+
+                        &lt;/<span class="pl-ent">div</span>&gt;</pre></div>
+
+<ul>
+<li>
+<code>selectedNode</code> - This will contains selected node ID</li>
+<li>
+<code>selectedDisplayText</code> - This will store the selected node text.</li>
+</ul>
+
+<h3>
+<a id="registering-for-events" class="anchor" href="#registering-for-events" aria-hidden="true"><span class="octicon octicon-link"></span></a>Registering for events</h3>
+
+<p>You can register a callback for any Js Tree event in the following way:</p>
+
+<ul>
+<li>add the  <code>tree-events</code> attribute and specify the name of the events to register for and a callback for each event.</li>
+</ul>
+
+<p>Example:</p>
+
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">div</span> <span class="pl-e">ng-controller</span>=<span class="pl-s"><span class="pl-pds">'</span>myCtrl<span class="pl-pds">'</span></span>&gt;
+    &lt;<span class="pl-ent">div</span> <span class="pl-e">js-tree</span>=<span class="pl-s"><span class="pl-pds">"</span>treeConfig<span class="pl-pds">"</span></span> <span class="pl-e">ng-model</span>=<span class="pl-s"><span class="pl-pds">"</span>treeData<span class="pl-pds">"</span></span> <span class="pl-e">should-apply</span>=<span class="pl-s"><span class="pl-pds">"</span>ignoreModelChanges()<span class="pl-pds">"</span></span> <span class="pl-e">tree</span>=<span class="pl-s"><span class="pl-pds">"</span>treeInstance<span class="pl-pds">"</span></span> <span class="pl-e">tree-events</span>=<span class="pl-s"><span class="pl-pds">"</span>ready:readyCB;create_node:createNodeCB<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">div</span>&gt;
+&lt;/<span class="pl-ent">div</span>&gt;</pre></div>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">angular</span>.<span class="pl-en">module</span>(<span class="pl-s"><span class="pl-pds">'</span>myApp<span class="pl-pds">'</span></span>).<span class="pl-en">controller</span>(<span class="pl-s"><span class="pl-pds">'</span>myCtrl<span class="pl-pds">'</span></span>, <span class="pl-k">function</span>(<span class="pl-smi">$scope</span>,<span class="pl-smi">$log</span>) {
+    <span class="pl-c1">$scope</span>.<span class="pl-en">readyCB</span> <span class="pl-k">=</span> <span class="pl-k">function</span>() {
+        <span class="pl-smi">$log</span>.<span class="pl-c1">info</span>(<span class="pl-s"><span class="pl-pds">'</span>ready called<span class="pl-pds">'</span></span>);
+    };
+
+    <span class="pl-c1">$scope</span>.<span class="pl-en">createNodeCB</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(<span class="pl-smi">e</span>,<span class="pl-smi">item</span>) {
+        <span class="pl-smi">$log</span>.<span class="pl-c1">info</span>(<span class="pl-s"><span class="pl-pds">'</span>create_node called<span class="pl-pds">'</span></span>);
+    };
+);</pre></div>
+
+<h3>
+<a id="using-the-js-tree-api-from-your-controller" class="anchor" href="#using-the-js-tree-api-from-your-controller" aria-hidden="true"><span class="octicon octicon-link"></span></a>Using the Js Tree API from your controller</h3>
+
+<p>Add the tree attribute to the jstree directive and assign it with a name of a variable in your controller that will hold the jstree instance.</p>
+
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">div</span> <span class="pl-e">ng-controller</span>=<span class="pl-s"><span class="pl-pds">'</span>myCtrl<span class="pl-pds">'</span></span>&gt;
+    &lt;<span class="pl-ent">div</span> <span class="pl-e">js-tree</span>=<span class="pl-s"><span class="pl-pds">"</span>treeConfig<span class="pl-pds">"</span></span> <span class="pl-e">ng-model</span>=<span class="pl-s"><span class="pl-pds">"</span>treeData<span class="pl-pds">"</span></span> <span class="pl-e">tree</span>=<span class="pl-s"><span class="pl-pds">"</span>treeInstance<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">div</span>&gt;
+&lt;/<span class="pl-ent">div</span>&gt;</pre></div>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">function</span> <span class="pl-en">yourCtrl</span>(<span class="pl-smi">$scope</span>)  {
+    <span class="pl-k">var</span> selected_nodes <span class="pl-k">=</span> <span class="pl-smi">$scope</span>.<span class="pl-smi">treeInstance</span>.<span class="pl-en">jstree</span>(<span class="pl-c1">true</span>).<span class="pl-en">get_selected</span>();
+}</pre></div>
+
+<h3>
+<a id="recreating-the-tree" class="anchor" href="#recreating-the-tree" aria-hidden="true"><span class="octicon octicon-link"></span></a>Recreating the Tree</h3>
+
+<p>If from some reason you would like to recreate the tree, the right way to do it is update the tree configuration object. Once the directive will detect a change to the tree configuration it will destory the tree and recreate it. </p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-v">this</span>.<span class="pl-smi">treeConfig</span> <span class="pl-k">=</span> {
+    core <span class="pl-k">:</span> {
+        multiple <span class="pl-k">:</span> <span class="pl-c1">false</span>,
+        animation<span class="pl-k">:</span> <span class="pl-c1">true</span>,
+        <span class="pl-en">error</span> <span class="pl-k">:</span> <span class="pl-k">function</span>(<span class="pl-smi">error</span>) {
+            <span class="pl-smi">$log</span>.<span class="pl-c1">error</span>(<span class="pl-s"><span class="pl-pds">'</span>treeCtrl: error from js tree - <span class="pl-pds">'</span></span> <span class="pl-k">+</span> <span class="pl-smi">angular</span>.<span class="pl-en">toJson</span>(error));
+        },
+        check_callback <span class="pl-k">:</span> <span class="pl-c1">true</span>,
+        worker <span class="pl-k">:</span> <span class="pl-c1">true</span>
+    },
+    version <span class="pl-k">:</span> <span class="pl-c1">1</span>
+};
+<span class="pl-v">this</span>.<span class="pl-smi">reCreateTree</span> <span class="pl-k">=</span> <span class="pl-k">function</span>() {
+    <span class="pl-v">this</span>.<span class="pl-smi">treeConfig</span>.<span class="pl-c1">version</span><span class="pl-k">++</span>;
+}</pre></div>
+
+<ul>
+<li>The reason i am using the version property is because it is not a JsTree config property, so it will not effect the tree.</li>
+</ul>
+
+<h2>
+<a id="development" class="anchor" href="#development" aria-hidden="true"><span class="octicon octicon-link"></span></a>Development</h2>
+
+<h4>
+<a id="prepare-your-environment" class="anchor" href="#prepare-your-environment" aria-hidden="true"><span class="octicon octicon-link"></span></a>Prepare your environment</h4>
+
+<ul>
+<li>Install <a href="http://nodejs.org/">Node.js</a> and NPM (should come with)</li>
+<li>Install global dev dependencies: <code>npm install -g grunt-cli karma</code>
+</li>
+<li>Install local dev dependencies: <code>npm install</code> while current directory is ngJsTree</li>
+<li>Install javascript dependencies: <code>bower install</code> while current directory is ngJsTree</li>
+</ul>
+
+<h4>
+<a id="build" class="anchor" href="#build" aria-hidden="true"><span class="octicon octicon-link"></span></a>Build</h4>
+
+<ul>
+<li>Build the whole project: <code>grunt</code> - this will run <code>jshint</code> and <code>test</code> and will build the project</li>
+</ul>
+
+<h4>
+<a id="tdd" class="anchor" href="#tdd" aria-hidden="true"><span class="octicon octicon-link"></span></a>TDD</h4>
+
+<ul>
+<li>Run test: <code>grunt watch</code>
+</li>
+</ul>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>MIT</p>
+      </section>
     </div>
-    <br/><br/>
-    <div class="row" cg-busy="vm.promise">
-        <toaster-container></toaster-container>
-        <div class="col-xs-6">
-            <div class="panel panel-default">
-                <div class="panel-heading"><i class="glyphicon glyphicon-tree-conifer"></i> Js Tree</div>
-                <div class="panel-body">
-                    <div js-tree="vm.treeConfig" should-apply="vm.applyModelChanges()" ng-model="vm.treeData" tree="vm.treeInstance" tree-events="ready:vm.readyCB;create_node:vm.createCB"></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <i class="glyphicon glyphicon-cog"></i> General Settings</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" novalidate role="form">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" ng-model="vm.ignoreChanges"> Ignore Model Changes
-                            </label>
-                        </div>
-                        <br/>
-                        <button class="btn btn-warning" type="button" ng-click="vm.reCreateTree()">Re Create Tree</button>
-                        <button class="btn btn-success" type="button" ng-click="vm.simulateAsyncData()">Load Async Node</button>
-                        <button class="btn btn-info" type="button" ng-click="vm.treeInstanceDemo()">Call Method of Tree Instance</button>
-                    </form>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <i class="glyphicon glyphicon-plus"></i> Add Node</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" novalidate name="newNodeForm" role="form">
-                        <div class="form-group">
-                            <label for="addNode" class="col-xs-3 control-label">Node Text:</label>
-                            <div class="col-xs-9" ng-class="{ 'has-error' : newNodeForm.addNode.$invalid}">
-                                <input type="text" class="form-control" id="addNode" ng-model="vm.newNode.text" name="addNode" placeholder="Node Text" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="nodeParent" class="col-xs-3 control-label">Node Parent:</label>
-                            <div class="col-xs-9" ng-class="{ 'has-error' : newNodeForm.nodeParent.$invalid}">
-                                <select class="form-control" id="nodeParent" name="nodeParent" ng-model="vm.newNode.parent" required>
-                                    <option ng-repeat="node in vm.treeData" value="{{node.id}}">{{node.text}}[{{node.id}}]</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="pull-right">
-                                    <button type="button" ng-disabled="newNodeForm.$invalid" ng-click="vm.addNewNode()" class="btn btn-success">Add Node</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <i class="glyphicon glyphicon-edit"></i> Change Node Type</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" novalidate name="nodeTypeForm" role="form">
-                        <div class="form-group">
-                            <label for="nodeParent" class="col-xs-3 control-label">Node:</label>
-                            <div class="col-xs-9" ng-class="{ 'has-error' : nodeTypeForm.node.$invalid}">
-                                <select class="form-control" id="node" name="node" ng-model="vm.selectedNode" required>
-                                    <option ng-repeat="node in vm.treeData" value="{{node.id}}">{{node.text}}[{{node.id}}]</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="nodeParent" class="col-xs-3 control-label">Type:</label>
-                            <div class="col-xs-9" ng-class="{ 'has-error' : nodeTypeForm.newType.$invalid}">
-                                <select class="form-control" id="newType" name="newType" ng-model="vm.newType" required>
-                                    <option value="default">Default</option>
-                                    <option value="star">Star</option>
-                                    <option value="cloud">Cloud</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="pull-right">
-                                    <button type="button" ng-disabled="nodeTypeForm.$invalid" ng-click="vm.setNodeType()" class="btn btn-success">Set Type</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Ngjstree maintained by <a href="https://github.com/engg-aruny">engg-aruny</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
     </div>
-    <div class="row">
-        <div class="col-xs-12">
-            <b>Raw Data:</b> {{ vm.treeData | json }}
-        </div>
-    </div>
-</div>
-<a class="hidden-xs hidden-sm" href="https://github.com/ezraroi/ngJsTree"><img style="z-index: 2000; position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_green_007200.png" alt="Fork me on GitHub"></a>
-<script src="bower_components/jquery/dist/jquery.min.js"></script>
-<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="bower_components/angular/angular.min.js"></script>
-<script src="bower_components/angular-animate/angular-animate.min.js"></script>
-<script src="bower_components/angular-busy/dist/angular-busy.js"></script>
-<script src="bower_components/jstree/dist/jstree.js"></script>
-<script src="bower_components/AngularJS-Toaster/toaster.js"></script>
-<script src="bower_components/underscore/underscore-min.js"></script>
-<script src="ngJsTree.js"></script>
-<script src="app.js"></script>
-<script src="treeCtrl.js"></script>
-</body>
+
+    
+
+  </body>
 </html>
